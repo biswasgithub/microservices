@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id: book-service
+        uri: lb://book-service
+        predicates:
+          - Path=/book/** 
+      - id: movie-service
+        uri: lb://movie-service
+        predicates:
+          - Path=/movie/** 
+
+server:
+  port: 9191
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+      
